@@ -1,0 +1,21 @@
+{
+  "name": "mOS",
+  "short_name": "mOS",
+  "description": "Midhun's personal command center and second brain.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/brain/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/seed/brain/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
