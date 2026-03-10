@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -48,7 +48,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: 
+  background:
     radial-gradient(circle at 50% 10%, var(--glow-color) 0%, transparent 60%),
     radial-gradient(circle at 80% 80%, var(--glow-color) 0%, transparent 50%);
   filter: blur(80px);
@@ -75,3 +75,119 @@
 .tracking-widest-luxury {
   letter-spacing: 0.2em;
 }
+/* === FAB Dock === */
+.fab-dock {
+  --total-options: 2;
+
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem;
+  border-radius: 1.1rem;
+  background: rgba(12, 12, 12, 0.88);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    6px 6px 16px rgba(0, 0, 0, 0.7),
+    -3px -3px 10px rgba(255, 255, 255, 0.015),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.fab-dock input[type="radio"] {
+  display: none;
+}
+
+.fab-dock label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.85rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.fab-dock label:hover {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.fab-dock label .fab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 0.45rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+/* Both checked states use the dynamic accent from the category */
+.fab-dock #fab-add:checked + label,
+.fab-dock #fab-ai:checked + label {
+  color: var(--fab-accent);
+  background: color-mix(in srgb, var(--fab-accent) 8%, transparent);
+  box-shadow: 0 0 16px var(--fab-accent-glow);
+}
+
+.fab-dock #fab-add:checked + label .fab-icon,
+.fab-dock #fab-ai:checked + label .fab-icon {
+  background: color-mix(in srgb, var(--fab-accent) 15%, transparent);
+  border-color: color-mix(in srgb, var(--fab-accent) 25%, transparent);
+  box-shadow: 0 0 10px var(--fab-accent-glow);
+}
+
+/* Glider */
+.fab-dock .glider-track {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 3px;
+  border-radius: 2px;
+  overflow: visible;
+}
+
+.fab-dock .glider-track .glider-pill {
+  position: relative;
+  height: calc(100% / var(--total-options));
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(0.37, 1.95, 0.66, 0.56);
+}
+
+.fab-dock .glider-track .glider-pill::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 55%;
+  top: 22%;
+  left: 0;
+  border-radius: 2px;
+  background: var(--fab-accent);
+  box-shadow: 0 0 6px var(--fab-accent-glow), 0 0 16px var(--fab-accent-glow);
+  transition: background 0.35s, box-shadow 0.35s;
+}
+
+.fab-dock #fab-add:checked ~ .glider-track .glider-pill {
+  transform: translateY(0);
+}
+
+.fab-dock #fab-ai:checked ~ .glider-track .glider-pill {
+  transform: translateY(100%);
+}
+

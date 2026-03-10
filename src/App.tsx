@@ -106,7 +106,7 @@ export default function App() {
       <Header />
       <CategoryPills />
 
-      <main className="pt-44 px-6 md:px-10 max-w-7xl mx-auto">
+      <main className="pt-36 px-6 md:px-10 max-w-7xl mx-auto">
         <motion.div 
           key={activeCategory}
           initial={{ opacity: 0, y: 10 }}

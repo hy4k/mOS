@@ -54,61 +54,69 @@ export const Header: React.FC = () => {
   const category = CATEGORIES[activeCategory];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 h-24 bg-bg/80 backdrop-blur-3xl border-b border-white/[0.05] flex items-center justify-between px-6 md:px-10">
-      <div className="flex items-center gap-4">
+    <header className="fixed top-0 left-0 right-0 z-40 h-20 flex items-center justify-between px-5 md:px-8">
+      {/* Glassmorphic background bar */}
+      <div className="absolute inset-x-3 inset-y-2 rounded-2xl bg-white/[0.025] backdrop-blur-3xl border border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.03)]" />
+
+      {/* Left - Brand */}
+      <div className="flex items-center gap-4 relative z-10">
         <div className="flex flex-col">
-          <h1 className="font-display font-light text-4xl leading-none tracking-tightest">
+          <h1 className="font-display font-light text-3xl leading-none tracking-tightest">
             m<span className="text-[#FF6B35] font-bold italic">OS</span>
           </h1>
-          <p className="text-xs font-display italic tracking-widest mt-1">
-            <span className="text-white/70">memory </span>
-            <span className="text-[#FF6B35] font-semibold">operating system</span>
+          <p className="text-[9px] font-display italic tracking-widest mt-0.5">
+            <span className="text-white/50">memory </span>
+            <span className="text-[#FF6B35]/80 font-semibold">operating system</span>
           </p>
         </div>
       </div>
 
-      <div className="flex items-center gap-1">
-        <div className="flex items-center gap-2 mr-2 md:mr-4 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/[0.05] shadow-sm" title={syncStatus}>
-          {syncStatus === 'Syncing...' && <RefreshCw className="w-3.5 h-3.5 text-blue-400 animate-spin" />}
-          {syncStatus === 'Up to date' && <Cloud className="w-3.5 h-3.5 text-emerald-400" />}
-          {syncStatus === 'Offline' && <CloudOff className="w-3.5 h-3.5 text-red-400" />}
-          <span className="hidden md:inline text-[10px] font-bold tracking-widest text-white/50 uppercase">
+      {/* Right - Actions */}
+      <div className="flex items-center gap-1.5 relative z-10">
+        {/* Sync Status */}
+        <div className="flex items-center gap-1.5 mr-1 md:mr-3 px-2.5 py-1.5 rounded-xl bg-white/[0.03] border border-white/[0.05]" title={syncStatus}>
+          {syncStatus === 'Syncing...' && <RefreshCw className="w-3 h-3 text-blue-400 animate-spin" />}
+          {syncStatus === 'Up to date' && <Cloud className="w-3 h-3 text-emerald-400" />}
+          {syncStatus === 'Offline' && <CloudOff className="w-3 h-3 text-red-400" />}
+          <span className="hidden md:inline text-[9px] font-bold tracking-widest text-white/40 uppercase">
             {syncStatus}
           </span>
         </div>
+
+        {/* Action buttons - boxed premium style */}
         <button
           onClick={() => setIsCalculatorOpen(!isCalculatorOpen)}
           className={cn(
-            "w-10 h-10 flex items-center justify-center rounded-xl border transition-all duration-300 group shadow-sm",
+            "w-9 h-9 flex items-center justify-center rounded-xl border transition-all duration-300 group",
             isCalculatorOpen 
-              ? "bg-white/10 border-white/20 text-white" 
-              : "bg-white/[0.03] border-white/[0.05] hover:bg-white/[0.08] hover:border-white/[0.1] text-white/60 hover:text-white"
+              ? "bg-white/10 border-white/20 text-white shadow-[0_0_12px_rgba(255,255,255,0.05)]" 
+              : "bg-white/[0.03] border-white/[0.06] hover:bg-white/[0.07] hover:border-white/[0.12] text-white/50 hover:text-white/90"
           )}
         >
-          <Calculator className="w-4 h-4 group-hover:scale-110 transition-transform" />
+          <Calculator className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
         </button>
         <button
           onClick={() => setSearchOpen(true)}
-          className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.08] hover:border-white/[0.1] transition-all duration-300 text-white/60 hover:text-white group shadow-sm"
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/[0.12] transition-all duration-300 text-white/50 hover:text-white/90 group"
         >
-          <Search className="w-4 h-4 group-hover:scale-110 transition-transform" />
+          <Search className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
         </button>
         <button
           onClick={() => setViewMode(viewMode === 'cards' ? 'compact' : 'cards')}
-          className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.08] hover:border-white/[0.1] transition-all duration-300 text-white/60 hover:text-white group shadow-sm"
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/[0.12] transition-all duration-300 text-white/50 hover:text-white/90 group"
         >
           {viewMode === 'cards' ? (
-            <List className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <List className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
           ) : (
-            <LayoutGrid className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <LayoutGrid className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
           )}
         </button>
-        <div className="w-px h-6 bg-white/[0.1] mx-1" />
+        <div className="w-px h-5 bg-white/[0.08] mx-0.5" />
         <button 
           onClick={() => setSettingsOpen(true)}
-          className="w-10 h-10 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.08] hover:border-white/[0.1] transition-all duration-300 text-white/60 hover:text-white group shadow-sm"
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/[0.12] transition-all duration-300 text-white/50 hover:text-white/90 group"
         >
-          <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+          <Settings className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform" />
         </button>
       </div>
 
@@ -118,7 +126,7 @@ export const Header: React.FC = () => {
           dragMomentum={false}
           initial={{ opacity: 0, scale: 0.9, y: -20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          className="absolute top-24 right-6 z-50 bg-bg/95 backdrop-blur-xl border border-white/10 rounded-3xl p-5 shadow-2xl w-[260px] cursor-move"
+          className="absolute top-20 right-6 z-50 bg-bg/95 backdrop-blur-xl border border-white/10 rounded-3xl p-5 shadow-2xl w-[260px] cursor-move"
         >
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-display text-lg text-white/90">Calculator</h3>

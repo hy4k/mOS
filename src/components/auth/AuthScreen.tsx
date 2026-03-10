@@ -8,7 +8,7 @@ const CATEGORY_COLORS = ['#FF6B35', '#00D4AA', '#FFD23F', '#EE4266', '#A78BFA', 
 const FloatingOrbs = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-bg z-0" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0d0d10] via-[#0a0a0f] to-[#0d0d10] z-0" />
       {CATEGORY_COLORS.map((color, i) => (
         <motion.div
           key={color}
@@ -82,6 +82,8 @@ export const AuthScreen: React.FC = () => {
 
       {/* Left Pane - Branding */}
       <div className="flex-1 relative flex flex-col justify-center p-10 md:p-20 min-h-[50vh] md:min-h-screen">
+        {/* Subtle warm background for left pane */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/[0.03] via-transparent to-[#A78BFA]/[0.02] pointer-events-none z-10" />
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
