@@ -103,7 +103,6 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
       } else {
         setSelectedCategory(activeCategory);
         // Reset fields
-        setMagicModeOpen(false);
         setMagicInput('');
         setTitle('');
         setContent('');
@@ -479,37 +478,106 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 {isMagicModeOpen ? (
                   <motion.div
                     key="magic-mode"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="space-y-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="space-y-8"
                   >
-                    <div className="p-6 rounded-[2rem] bg-indigo-500/5 border border-indigo-500/10 space-y-4">
-                      <div className="flex items-center gap-3 text-indigo-300">
+                    <div className="p-8 rounded-[2.5rem] bg-indigo-500/5 border border-indigo-500/10 space-y-6 relative overflow-hidden backdrop-blur-xl">
+                      {/* Accent glow for AI mode */}
+                      <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+                      
+                      <div className="flex items-center gap-3 text-indigo-400">
                         <Sparkles className="w-5 h-5" />
-                        <h3 className="font-display text-lg">AI Assistant</h3>
+                        <h3 className="font-display text-lg uppercase tracking-widest-luxury font-black">AI Command Center</h3>
                       </div>
-                      <p className="text-sm text-white/50 font-light leading-relaxed">
-                        Paste any raw text (like a messy note, an email with credentials, or a random thought). 
-                        Gemini will automatically categorize it, extract the relevant fields, and structure it for your workspace.
-                      </p>
-                      <textarea
-                        value={magicInput}
-                        onChange={(e) => setMagicInput(e.target.value)}
-                        placeholder="e.g., My netflix login is user@email.com and the password is password123. It's for the family account."
-                        rows={4}
-                        className="w-full bg-black/20 border border-indigo-500/20 rounded-[1.5rem] px-6 py-5 text-base font-light text-white placeholder:text-white/20 focus:outline-none focus:border-indigo-500/50 transition-all duration-500 resize-none"
-                      />
-                      <div className="flex justify-end">
-                        <button
-                          onClick={handleMagicParse}
-                          disabled={isParsing || !magicInput.trim()}
-                          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-bold uppercase tracking-widest text-xs transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {isParsing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                          {isParsing ? 'Analyzing...' : 'Parse with Gemini'}
-                        </button>
+                      
+                      <div className="space-y-4">
+                        <textarea
+                          autoFocus
+                          value={magicInput}
+                          onChange={(e) => setMagicInput(e.target.value)}
+                          placeholder={`Instruct Gemini to fill these columns, e.g., "Note about my vacation planning starting from July 10th..."`}
+                          rows={3}
+                          className="w-full bg-black/40 border border-indigo-500/20 rounded-[1.5rem] px-6 py-5 text-base font-light text-white placeholder:text-white/20 focus:outline-none focus:border-indigo-500/50 transition-all duration-500 resize-none shadow-inner"
+                        />
+                        <div className="flex justify-between items-center">
+                          <p className="text-[9px] text-white/30 uppercase tracking-[0.2em] font-bold">
+                            Powered by Gemini 2.0 Flash
+                          </p>
+                          <button
+                            onClick={handleMagicParse}
+                            disabled={isParsing || !magicInput.trim()}
+                            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white font-black uppercase tracking-widest text-[10px] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_10px_30px_rgba(99,102,241,0.3)]"
+                          >
+                            {isParsing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                            {isParsing ? 'Analyzing...' : 'Parse Columns'}
+                          </button>
+                        </div>
                       </div>
+                    </div>
+
+                    {/* AI Enhancement Columns Display */}
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between px-4">
+                        <h4 className="text-[10px] uppercase tracking-widest-luxury font-black text-white/20">Target Columns</h4>
+                        <div className="h-px flex-1 mx-6 bg-white/[0.05]" />
+                      </div>
+                      
+                      <div className="ai-columns-grid">
+                        <div className="ai-column-item">
+                          <label className="ai-column-label">Entry Title</label>
+                          <input 
+                            type="text" 
+                            disabled 
+                            value={title} 
+                            placeholder="Awaiting extraction..." 
+                            className="ai-column-input opacity-50 italic"
+                          />
+                        </div>
+                        {selectedCategory === 'links' && (
+                          <div className="ai-column-item">
+                            <label className="ai-column-label">URL / Endpoint</label>
+                            <input type="text" disabled value={url} placeholder="https://..." className="ai-column-input opacity-50 italic" />
+                          </div>
+                        )}
+                        {selectedCategory === 'credentials' && (
+                          <>
+                            <div className="ai-column-item">
+                              <label className="ai-column-label">Identity / Login</label>
+                              <input type="text" disabled value={username} placeholder="user@..." className="ai-column-input opacity-50 italic" />
+                            </div>
+                            <div className="ai-column-item">
+                              <label className="ai-column-label">Access Protocol</label>
+                              <input type="text" disabled value={password} placeholder="••••••••" className="ai-column-input opacity-50 italic" />
+                            </div>
+                          </>
+                        )}
+                        <div className="ai-column-item">
+                          <label className="ai-column-label">Primary Fragment</label>
+                          <div className="ai-column-input min-h-[50px] opacity-50 italic overflow-hidden truncate">
+                            {content || 'Awaiting content...'}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-8 flex gap-5">
+                      <button
+                        onClick={() => setAddItemOpen(false)}
+                        className="flex-1 py-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.08] text-white/30 font-bold uppercase tracking-widest text-xs transition-all duration-500 border border-white/[0.05]"
+                      >
+                        Abort
+                      </button>
+                      <button
+                        onClick={handleSave}
+                        disabled={!title.trim()}
+                        className="flex-[2] py-4 rounded-2xl font-black text-white uppercase tracking-widest text-xs shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500 hover:brightness-110 active:scale-[0.98] relative overflow-hidden group disabled:opacity-50"
+                        style={{ background: `linear-gradient(135deg, ${category.color}, ${category.color}cc)` }}
+                      >
+                        <span className="relative z-10">Commit AI Structure</span>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                      </button>
                     </div>
                   </motion.div>
                 ) : (

@@ -26,7 +26,7 @@ export const FAB: React.FC = () => {
         }}
       >
         <span className="fab-icon">
-          <Plus size={12} strokeWidth={2.5} />
+          <Plus size={10} strokeWidth={3} />
         </span>
         Add
       </label>
@@ -44,7 +44,7 @@ export const FAB: React.FC = () => {
         }}
       >
         <span className="fab-icon">
-          <Plus size={12} strokeWidth={2.5} />
+          <Plus size={10} strokeWidth={3} />
         </span>
         Add with AI
       </label>
