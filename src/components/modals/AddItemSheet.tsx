@@ -18,11 +18,10 @@ interface AddItemSheetProps {
 }
 
 export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) => {
-  const { isAddItemOpen, setAddItemOpen, activeCategory, editingItem, setEditingItem } = useAppStore();
+  const { isAddItemOpen, setAddItemOpen, activeCategory, editingItem, setEditingItem, isMagicModeOpen, setMagicModeOpen } = useAppStore();
   const { isMasterPasswordVerified, verifiedPassword } = useAuthStore();
   
   // Magic Mode
-  const [isMagicMode, setIsMagicMode] = useState(false);
   const [magicInput, setMagicInput] = useState('');
   const [isParsing, setIsParsing] = useState(false);
 
@@ -104,7 +103,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
       } else {
         setSelectedCategory(activeCategory);
         // Reset fields
-        setIsMagicMode(false);
+        setMagicModeOpen(false);
         setMagicInput('');
         setTitle('');
         setContent('');
@@ -154,7 +153,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
           if (parsed.metadata.due_date) setDueDate(parsed.metadata.due_date);
         }
         
-        setIsMagicMode(false);
+        setMagicModeOpen(false);
       }
     } catch (error) {
       console.error("Magic parse failed", error);
@@ -466,19 +465,6 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setIsMagicMode(!isMagicMode)}
-                  className={cn(
-                    "flex items-center gap-2 px-6 py-4 rounded-full font-bold uppercase tracking-widest text-[10px] transition-all duration-500 border",
-                    isMagicMode 
-                      ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/30 shadow-[0_0_30px_rgba(99,102,241,0.2)]" 
-                      : "bg-white/[0.02] text-white/40 border-white/[0.05] hover:bg-white/[0.05] hover:text-white/80 hover:border-white/10"
-                  )}
-                >
-                  <Sparkles className={cn("w-4 h-4", isMagicMode && "text-indigo-400")} />
-                  <span className="hidden sm:inline">Magic Add</span>
-                </button>
-                <div className="w-px h-8 bg-white/[0.1] mx-1" />
                 <button 
                   onClick={() => setAddItemOpen(false)}
                   className="p-4 rounded-full hover:bg-white/10 text-white/20 hover:text-white transition-all duration-500 border border-transparent hover:border-white/10"
@@ -490,7 +476,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
 
             <div className="space-y-10 max-w-3xl mx-auto">
               <AnimatePresence mode="wait">
-                {isMagicMode ? (
+                {isMagicModeOpen ? (
                   <motion.div
                     key="magic-mode"
                     initial={{ opacity: 0, height: 0 }}

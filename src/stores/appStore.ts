@@ -18,6 +18,7 @@ interface AppState {
   sortBy: SortField;
   sortDirection: SortDirection;
   syncStatus: SyncStatus;
+  isMagicModeOpen: boolean;
   setActiveCategory: (category: CategoryId) => void;
   setViewMode: (mode: 'cards' | 'compact') => void;
   setSearchOpen: (isOpen: boolean) => void;
@@ -29,6 +30,7 @@ interface AppState {
   setSortBy: (field: SortField) => void;
   setSortDirection: (direction: SortDirection) => void;
   setSyncStatus: (status: SyncStatus) => void;
+  setMagicModeOpen: (isOpen: boolean) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -43,6 +45,7 @@ export const useAppStore = create<AppState>((set) => ({
   sortBy: 'updated_at',
   sortDirection: 'desc',
   syncStatus: 'Up to date',
+  isMagicModeOpen: false,
   setActiveCategory: (category) => set({ activeCategory: category }),
   setViewMode: (mode) => set({ viewMode: mode }),
   setSearchOpen: (isOpen) => set({ isSearchOpen: isOpen }),
@@ -54,4 +57,5 @@ export const useAppStore = create<AppState>((set) => ({
   setSortBy: (field) => set({ sortBy: field }),
   setSortDirection: (direction) => set({ sortDirection: direction }),
   setSyncStatus: (status) => set({ syncStatus: status }),
+  setMagicModeOpen: (isOpen) => set({ isMagicModeOpen: isOpen }),
 }));
