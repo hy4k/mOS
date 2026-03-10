@@ -36,35 +36,6 @@ const FloatingOrbs = () => {
   );
 };
 
-const MOSLogo = () => (
-  <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
-    {/* Animated background glow using category colors */}
-    <motion.div 
-      className="absolute inset-0 blur-3xl opacity-30 rounded-full" 
-      style={{
-        background: 'conic-gradient(from 0deg, #FF6B35, #FFD23F, #00D4AA, #3B82F6, #A78BFA, #EE4266, #FF6B35)'
-      }}
-      animate={{ rotate: 360 }}
-      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-    />
-    
-    {/* Logo container */}
-    <div className="relative w-full h-full bg-black/60 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden group">
-      {/* Inner gradient ring */}
-      <div 
-        className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700" 
-        style={{
-          background: 'conic-gradient(from 0deg, #FF6B35, #FFD23F, #00D4AA, #3B82F6, #A78BFA, #EE4266, #FF6B35)'
-        }} 
-      />
-      
-      <span className="font-display font-light text-6xl md:text-7xl tracking-tighter text-white relative z-10">
-        m<span className="text-white/40">OS</span>
-      </span>
-    </div>
-  </div>
-);
-
 export const AuthScreen: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
@@ -105,18 +76,19 @@ export const AuthScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-bg overflow-hidden">
+    <div className="min-h-screen flex flex-col md:flex-row bg-bg overflow-hidden relative">
+      {/* Global floating orbs behind both panes */}
+      <FloatingOrbs />
+
       {/* Left Pane - Branding */}
-      <div className="flex-1 relative flex flex-col justify-between p-10 md:p-20 border-b md:border-b-0 md:border-r border-white/10 min-h-[50vh] md:min-h-screen">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
-        <FloatingOrbs />
-        
+      <div className="flex-1 relative flex flex-col justify-center p-10 md:p-20 min-h-[50vh] md:min-h-screen">
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 flex flex-col mt-12 md:mt-0"
+          className="relative z-30 flex flex-col"
         >
+          {/* Brand Logo */}
           <h1 className="font-display font-light text-[100px] md:text-[160px] leading-none tracking-tightest text-white">
             m<span className="text-[#FF6B35] font-bold italic">OS</span>
           </h1>
@@ -125,21 +97,36 @@ export const AuthScreen: React.FC = () => {
             <span className="text-[#FF6B35] font-semibold">operating system</span>
           </p>
           
-          <div className="w-16 h-1 bg-white/[0.1] rounded-full mt-12 mb-8" />
+          <div className="w-16 h-1 bg-white/[0.15] rounded-full mt-12 mb-8" />
           
-          <p className="text-white/40 text-sm md:text-base max-w-sm font-light leading-relaxed">
+          <p className="text-white/50 text-sm md:text-base max-w-sm font-light leading-relaxed">
             A secure, categorized workspace for your fleeting thoughts, credentials, and important data.
           </p>
+
+          {/* Feature pills */}
+          <div className="flex flex-wrap gap-3 mt-10">
+            {['End-to-end encrypted', 'AI-powered', 'Real-time sync'].map((feature) => (
+              <div
+                key={feature}
+                className="px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/40 text-[11px] font-semibold uppercase tracking-widest"
+              >
+                {feature}
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
 
+      {/* Center Divider */}
+      <div className="hidden md:block w-px bg-gradient-to-b from-transparent via-white/[0.08] to-transparent relative z-30" />
+
       {/* Right Pane - Auth Form */}
-      <div className="flex-1 flex items-center justify-center p-6 md:p-20 relative bg-black/20">
+      <div className="flex-1 flex items-center justify-center p-6 md:p-20 relative z-30">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-md relative z-30"
+          className="w-full max-w-md"
         >
           <div className="mb-12">
             <h2 className="font-display font-light text-3xl md:text-4xl tracking-tight text-white/95 mb-3">
@@ -150,9 +137,12 @@ export const AuthScreen: React.FC = () => {
             </p>
           </div>
 
-          <div className="bg-white/[0.02] border border-white/[0.05] rounded-[2.5rem] p-8 md:p-10 backdrop-blur-3xl shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-hidden">
-            {/* Subtle top highlight */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          <div className="bg-white/[0.03] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.6),_0_0_200px_rgba(0,0,0,0.3)] relative overflow-hidden">
+            {/* Top highlight */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            {/* Side accent glow */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#FF6B35]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#A78BFA]/10 rounded-full blur-3xl pointer-events-none" />
 
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               {error && (
@@ -179,7 +169,7 @@ export const AuthScreen: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-white/5 border border-white/20 shadow-sm hover:border-white/30 rounded-[2rem] py-5 pl-12 pr-6 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 font-light"
+                      className="w-full bg-white/5 border border-white/[0.12] shadow-sm hover:border-white/25 rounded-[2rem] py-5 pl-12 pr-6 text-white placeholder:text-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.08] transition-all duration-500 font-light"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -198,7 +188,7 @@ export const AuthScreen: React.FC = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full bg-white/5 border border-white/20 shadow-sm hover:border-white/30 rounded-[2rem] py-5 pl-12 pr-6 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 font-light"
+                      className="w-full bg-white/5 border border-white/[0.12] shadow-sm hover:border-white/25 rounded-[2rem] py-5 pl-12 pr-6 text-white placeholder:text-white/30 focus:outline-none focus:border-white/40 focus:bg-white/[0.08] transition-all duration-500 font-light"
                       placeholder="Enter your password"
                     />
                   </div>
