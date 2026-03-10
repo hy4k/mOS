@@ -115,22 +115,18 @@ export const AuthScreen: React.FC = () => {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10"
+          className="relative z-10 flex flex-col mt-12 md:mt-0"
         >
-          <MOSLogo />
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative z-10 mt-12 md:mt-0"
-        >
-          <h1 className="font-display font-light text-6xl md:text-[112px] leading-[0.88] tracking-tightest text-white mb-6">
-            memory<br/>
-            <span className="text-white/40 italic">operating</span><br/>
-            system
+          <h1 className="font-display font-light text-[100px] md:text-[160px] leading-none tracking-tightest text-white">
+            m<span className="text-[#FF6B35] font-bold italic">OS</span>
           </h1>
+          <p className="text-xl md:text-3xl font-display italic tracking-widest mt-4">
+            <span className="text-white/70">memory </span>
+            <span className="text-[#FF6B35] font-semibold">operating system</span>
+          </p>
+          
+          <div className="w-16 h-1 bg-white/[0.1] rounded-full mt-12 mb-8" />
+          
           <p className="text-white/40 text-sm md:text-base max-w-sm font-light leading-relaxed">
             A secure, categorized workspace for your fleeting thoughts, credentials, and important data.
           </p>
@@ -183,7 +179,7 @@ export const AuthScreen: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-white/[0.02] border border-white/[0.05] rounded-[2rem] py-5 pl-12 pr-6 text-white/90 placeholder:text-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all duration-500 font-light"
+                      className="w-full bg-white/5 border border-white/20 shadow-sm hover:border-white/30 rounded-[2rem] py-5 pl-12 pr-6 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 font-light"
                       placeholder="Enter your email"
                     />
                   </div>
@@ -202,7 +198,7 @@ export const AuthScreen: React.FC = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full bg-white/[0.02] border border-white/[0.05] rounded-[2rem] py-5 pl-12 pr-6 text-white/90 placeholder:text-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all duration-500 font-light"
+                      className="w-full bg-white/5 border border-white/20 shadow-sm hover:border-white/30 rounded-[2rem] py-5 pl-12 pr-6 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 font-light"
                       placeholder="Enter your password"
                     />
                   </div>

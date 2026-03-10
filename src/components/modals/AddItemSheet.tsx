@@ -258,7 +258,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://..."
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
               />
             </div>
             <div className="space-y-3">
@@ -268,7 +268,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="What is this link about?"
                 rows={2}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none"
               />
             </div>
             <div className="space-y-3">
@@ -278,7 +278,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Any additional notes..."
                 rows={2}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none"
               />
             </div>
           </>
@@ -294,7 +294,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="admin@example.com"
-                  className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                  className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
                 />
               </div>
               <div className="space-y-3">
@@ -304,7 +304,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                  className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
                 />
               </div>
             </div>
@@ -315,7 +315,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Security questions, recovery codes..."
                 rows={2}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none"
               />
             </div>
           </>
@@ -329,7 +329,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 [color-scheme:dark]"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 [color-scheme:dark]"
               />
             </div>
             <div className="space-y-3">
@@ -339,7 +339,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Gift ideas, how you met..."
                 rows={3}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none"
               />
             </div>
           </>
@@ -355,7 +355,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                   value={bankAccount}
                   onChange={(e) => setBankAccount(e.target.value)}
                   placeholder="Account Number..."
-                  className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                  className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
                 />
               </div>
               <div className="space-y-3">
@@ -365,7 +365,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   placeholder="+1 234 567 8900"
-                  className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                  className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
                 />
               </div>
             </div>
@@ -376,7 +376,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Context for this data..."
                 rows={2}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none"
               />
             </div>
           </>
@@ -410,7 +410,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Describe the task..."
                 rows={3}
-                className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none"
+                className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none"
               />
             </div>
           </>
@@ -424,7 +424,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
               onChange={(e) => setContent(e.target.value)}
               placeholder={category.placeholder}
               rows={6}
-              className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white/80 placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 resize-none leading-relaxed"
+              className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white/90 placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 resize-none leading-relaxed"
             />
           </div>
         );
@@ -547,7 +547,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Identify this entry..."
-                        className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-xl font-display font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                        className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-xl font-display font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
                       />
                     </div>
 
@@ -559,7 +559,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                         type="datetime-local"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
-                        className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500 [color-scheme:dark]"
+                        className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl px-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500 [color-scheme:dark]"
                       />
                     </div>
 
@@ -573,7 +573,7 @@ export const AddItemSheet: React.FC<AddItemSheetProps> = ({ onAdd, onUpdate }) =
                             value={tags}
                             onChange={(e) => setTags(e.target.value)}
                             placeholder="dev, work, personal..."
-                            className="w-full bg-white/[0.02] border border-white/[0.05] rounded-2xl pl-14 pr-6 py-4 text-base font-light text-white placeholder:text-white/10 focus:outline-none focus:border-white/[0.15] focus:bg-white/[0.04] transition-all duration-500"
+                            className="w-full bg-white/5 border border-white/20 shadow-sm rounded-2xl pl-14 pr-6 py-4 text-base font-light text-white placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-500"
                           />
                         </div>
                       </div>
